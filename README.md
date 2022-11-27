@@ -7,7 +7,7 @@ numpy,
 matplotlib.pyplot, and
 scipy
 
-can be installed with
+Can be installed with the following commands
 ```bash
 conda install numpy matplotlib scipy
 ```
