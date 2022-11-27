@@ -3,8 +3,8 @@ Project 5
 
 ## Dependencies
 Python packages used:
-numpy
-matplotlib.pyplot
+numpy,
+matplotlib.pyplot, and
 scipy
 
 can be installed with
