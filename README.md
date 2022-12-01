@@ -16,3 +16,8 @@ or
 pip install numpy matplotlib scipy
 ```
 
+There are some tests that can be run using
+```bash
+make test
+```
+
