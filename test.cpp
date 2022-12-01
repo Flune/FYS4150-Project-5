@@ -9,8 +9,10 @@ int main(){
 
     sp_cx_mat A = aMatrix(5,2,a);
     sp_cx_mat B = bMatrix(5,2,b);
-    A.print();
-    B.print();
+    // A.print();
+    // B.print();
+
+    potential(61);
 
     return 0;
 }

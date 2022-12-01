@@ -4,4 +4,9 @@ comp_test:
 run_test:
 	./test.exe
 
+count_test:
+	./test.exe | uniq -c
+
 test: comp_test run_test
+
+test_count: comp_test count_test
