@@ -1,6 +1,4 @@
-#include <armadillo>
-#include <iostream>
-#include <string>
+#include "utils.hpp"
 
 using namespace std;
 using namespace arma;
@@ -48,10 +46,3 @@ arma::mat bMatrix(int M, double r, arma::vec b){
     return B;
 }
 
-int main(){
-    arma::vec a=arma::ones(9);
-    arma::vec b=arma::zeros(9);
-    arma::mat A = aMatrix(5,2,a);
-    arma::mat B = bMatrix(5,2,b);
-    //A.print();
-}
