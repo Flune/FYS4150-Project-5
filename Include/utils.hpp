@@ -3,6 +3,6 @@
 #include <string>
 
 
-arma::mat bMatrix(int M, double r, arma::vec b);
+arma::sp_cx_mat aMatrix(int M, double r, arma::cx_vec a);
     
-arma::mat aMatrix(int M, double r, arma::vec a);
+// arma::sp_cx_mat bMatrix(int M, double r, arma::cx_vec b);
