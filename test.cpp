@@ -4,15 +4,13 @@ using namespace std;
 using namespace arma;
 
 int main(){
-    cx_vec a = cx_vec(9, fill::none); a.fill(1);
-    cx_vec b = cx_vec(9, fill::none); b.fill(0);
-
-    sp_cx_mat A = aMatrix(5,2,a);
-    sp_cx_mat B = bMatrix(5,2,b);
+    int M = 10;
     // A.print();
     // B.print();
+    // cx_vec V = potential(M);
+    // u_init(M, 0.25, 0.05 ,200, 0.5, 0.05, 0, V);
 
-    potential(61);
+    // potential(61);
 
     return 0;
 }

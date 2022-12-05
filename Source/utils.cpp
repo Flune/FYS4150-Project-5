@@ -15,6 +15,10 @@ void log_(double d){
     cout << d << endl;
 }
 
+void log_(complex<double> d){
+    cout << d << endl;
+}
+
 umat locations(int N){
     umat locations = umat(2, N*(5*N-4));
     for (int i=0; i<N*N; i++){
@@ -44,7 +48,7 @@ umat locations(int N){
     return locations;
 }
 
-sp_cx_mat aMatrix(int M, double r, cx_vec a){
+sp_cx_mat aMatrix(int M, complex<double> r, cx_vec& a){
     int N=M-2;
     // We have N*N + 4*N*(N-1) values
     cx_vec values = cx_vec(N*(5*N-4));
@@ -54,18 +58,6 @@ sp_cx_mat aMatrix(int M, double r, cx_vec a){
 
     sp_cx_mat A = sp_cx_mat(Locations, values);
     return A;
-}
-
-sp_cx_mat bMatrix(int M, double r, cx_vec b){
-    int N=M-2;
-    // We have N*N + 4*N*(N-1) values
-    cx_vec values = cx_vec(N*(5*N-4));
-    umat Locations = locations(N);
-    values.subvec(0,N*N-1) = b;
-    values.subvec(N*N,N*(5*N-4)-1).fill(r);
-
-    sp_cx_mat B = sp_cx_mat(Locations, values);
-    return B;
 }
 
 cx_vec potential_(double T, double x, double dy, double y, int n, int M){
@@ -112,7 +104,7 @@ cx_vec potential_(double T, double x, double dy, double y, int n, int M){
         }
     }
 
-    potential.print();
+    // potential.print();
 
     return potential;
 }
@@ -125,3 +117,49 @@ cx_vec potential(int M,
                  double slit_size){
     return potential_(thickness, x_pos, slit_seperation, slit_size, n_slits, M);
 }
+
+sp_cx_mat AMatrix(int M, double h, double dt, cx_vec& V){
+    complex<double> r = 1j*dt/(2*h*h);
+    cx_vec a = 0.5j*dt*V + 1 + 4.*r;
+    return aMatrix(M, r, a);
+}
+
+sp_cx_mat BMatrix(int M, double h, double dt, cx_vec& V){
+    return AMatrix(M, h, -dt, V);
+}
+
+void time_step(cx_vec& u, sp_cx_mat& A, sp_cx_mat& B){
+    cx_vec b = B*u;
+    u = spsolve(A, b);
+}
+
+cx_vec u_init(int M, double xc, double xs, double xp,
+              double yc, double ys, double yp, cx_vec& V){
+    int N = M-2, ind;
+    double x, y, h = 1./(M-1), sum;
+    complex<double> temp;
+
+    cx_vec u = cx_vec(N*N);
+
+    for(int i = 1; i < M-1; i++){
+        x = i*h-xc;
+        for(int j = 1; j < M-1; j++){
+            ind = index(i-1, j-1, N);
+            if (norm(V(ind))<1){
+                y = j*h-yc;
+                temp = -x*x/(2*xs*xs) -y*y/(2*ys*ys) +1j*xp*x +1j*yp*y;
+                u(ind) = exp(temp);
+            }
+            else{
+                u(ind) = 0;
+            }
+        }
+    }
+    
+    u = normalise(u,2);
+
+    u.print();
+
+    return u;
+}
+

@@ -10,3 +10,6 @@ count_test:
 test: comp_test run_test
 
 test_count: comp_test count_test
+
+hello_world:
+	echo "Hello World"
