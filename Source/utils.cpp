@@ -7,17 +7,17 @@ int index(int i,int j,int rl){
     return i*rl+j;
 }
 
-void log_(int n){
-    cout << n << endl;
-}
+// void log_(int n){
+//     cout << n << endl;
+// }
 
-void log_(double d){
-    cout << d << endl;
-}
+// void log_(double d){
+//     cout << d << endl;
+// }
 
-void log_(complex<double> d){
-    cout << d << endl;
-}
+// void log_(complex<double> d){
+//     cout << d << endl;
+// }
 
 umat locations(int N){
     umat locations = umat(2, N*(5*N-4));
@@ -158,7 +158,7 @@ cx_vec u_init(int M, double xc, double xs, double xp,
     
     u = normalise(u,2);
 
-    u.print();
+    // u.print();
 
     return u;
 }
