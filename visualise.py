@@ -54,8 +54,8 @@ plt.yticks(fontsize=fontsize)
 # Add a text element showing the time
 text = f"t = {t_min:.3}"
 # print(text)
-time_txt = plt.text(0.95, 0.95, text)#, color="white", 
-                    # horizontalalignment="right", verticalalignment="top", fontsize=fontsize)
+time_txt = plt.text(0.95, 0.95, text, color="white", 
+                    horizontalalignment="right", verticalalignment="top", fontsize=fontsize)
 
 # Function that takes care of updating the z data and other things for each frame
 def make_func(dataset):

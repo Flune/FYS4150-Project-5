@@ -21,7 +21,7 @@ void log_(complex<double> d){
 
 
 tuple<int, double, double, double, double, double,
-    double, double, double, double> read_params(string filename){
+    double, double, double, double, int> read_params(string filename){
     cout << "reading form: " << filename << endl;
     ifstream file(filename);
     string temp;
@@ -45,10 +45,12 @@ tuple<int, double, double, double, double, double,
     double yp = stod(temp);
     getline(file, temp);
     double V = stod(temp);
+    getline(file, temp);
+    int n = stoi(temp);
 
     cout << "done" << endl;
 
-    return make_tuple(M, dt, T, xc, xs, xp, yc, ys, yp, V);
+    return make_tuple(M, dt, T, xc, xs, xp, yc, ys, yp, V, n);
 }
 
 int main(int argc, char *argv[]){
@@ -60,13 +62,13 @@ int main(int argc, char *argv[]){
 
     #pragma omp parallel for
     for (int i = 1; i<argc; i++){
-        int M;
+        int M, n_slit;
         double dt, T, xc, xs, xp, yc, ys, yp, v0, h;
-        tie(M, dt, T, xc, xs, xp, yc, ys, yp, v0) = read_params(argv[i]);
+        tie(M, dt, T, xc, xs, xp, yc, ys, yp, v0, n_slit) = read_params(argv[i]);
         h = 1./M;
 
         // log_(0);
-        cx_vec V = potential(M) * v0;
+        cx_vec V = potential(M, n_slit) * v0;
         // log_(1);
         cx_vec u = u_init(M, xc, xs, xp, yc, ys, yp, V);
         // log_(2);

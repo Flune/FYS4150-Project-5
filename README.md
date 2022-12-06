@@ -17,8 +17,22 @@ or
 pip install numpy matplotlib pyarma
 ```
 
+### FFMpeg
+The animations are rendered using FFMpeg, you may have to download and install FFMpeg to be able to save the animations.
+
+## Usage
+
 There are some tests that can be run using
 ```bash
 make problem7
 ```
 
+The results can be reproduced using
+```bash
+make run
+```
+
+The figures can be remade without rerunning the simulation using
+```bash
+make plot
+```

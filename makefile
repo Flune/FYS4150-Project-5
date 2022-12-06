@@ -23,5 +23,15 @@ plot_sim_test:
 
 problem7: comp_sim run_sim_test
 
+run_real:
+	./main.exe slit1.txt slit2.txt slit3.txt
+
+plot:
+	python visualise.py slit1.txt
+	python visualise.py slit2.txt
+	python visualise.py slit3.txt
+
+run: comp_sim run_real plot
+
 hello_world:
 	echo "Hello World"
