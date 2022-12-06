@@ -5,19 +5,20 @@ Project 5
 Python packages used:
 numpy,
 matplotlib.pyplot, and
-scipy
+PyArmadillo
 
 Can be installed with the following commands
 ```bash
-conda install numpy matplotlib scipy
+conda install numpy matplotlib
+pip3 install pyarma
 ```
 or
 ```bash
-pip install numpy matplotlib scipy
+pip install numpy matplotlib pyarma
 ```
 
 There are some tests that can be run using
 ```bash
-make test
+make problem7
 ```
 

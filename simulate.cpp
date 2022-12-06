@@ -99,7 +99,8 @@ int main(int argc, char *argv[]){
         ofstream file(filename + "/" + filename + "_meta.dat");
         file << "# time and total probability for each time step" << endl;
         for (int j = 0; j<n; j++){
-            file << (j+1)*dt << "\t" << prob[j] << endl;
+            file << (j+1)*dt << "\t" << setw(20) << setprecision(16)
+            << scientific << prob[j] << endl;
         }
     }
 
