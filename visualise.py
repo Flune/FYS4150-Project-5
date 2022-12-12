@@ -22,6 +22,12 @@ print(f"U has shape {U.shape}")
 metadata = np.genfromtxt(f"{fileroot}/{fileroot}_meta.dat", skip_header=1)
 # print(metadata)
 print(f"metadata has shape {metadata.shape}")
+f, a = plt.subplots(1,1)
+a.plot(metadata[:,0],metadata[:,1])
+a.set_xlabel("Time [s]")
+a.set_ylabel("Probability")
+a.set_title("Probability deviation from 1.0")
+f.savefig(f"{fileroot}/{fileroot}_prob_deviation.pdf")
 
 dt = (metadata[-1,0] - metadata[0,0])/(metadata.shape[0]-1)
 
@@ -102,7 +108,8 @@ for i, (z_data_list, name) in enumerate(data):
         fig2, ax2 = plt.subplots(1,1)
         ax2.plot(np.linspace(x_min, x_max, length, True),amp)
         ax2.set_xlabel("y")
-        ax2.set_ylabel("Amplitude")
+        ax2.set_ylabel("Probability")
+        ax2.set_title("Detection Probability, p(y|x=0.8; t=0.002)")
         fig2.savefig(f"{fileroot}/{fileroot}_screen.pdf")
 
     # Use matplotlib.animation.FuncAnimation to put it all together
